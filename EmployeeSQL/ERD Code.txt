@@ -1,0 +1,45 @@
+# The Departments:
+Departments
+Department_Emp
+Department_Mgr
+Employees
+Salaries
+Titles
+
+Departments:
+dept_no (PK)INT
+dept_name VARCHAR
+
+Department_Emp
+emp_no (FK)INT 
+dept_no (FK)INT 
+
+Department_Mgr
+emp_no (FK)INT
+dept_no (PK)INT
+
+Employees
+emp_no (PK)INT 
+title_id (FK)VARCHAR
+birth_date DATE
+first_name VARCHAR
+last_name VARCHAR
+sex VARCHAR
+hire_date DATE
+
+Salaries
+emp_no (FK)INT 
+salary INT
+
+Titles:
+title_id (K)
+title
+
+# The relationships between the departments
+Employees (emp_no) -> Salaries (emp_no)
+Employees (emp_title_id) -> Titles (title_id)
+Department_Emp (emp_no) -> Employees (emp_no)
+Department_Emp (dept_no) -> Departments (dept_no)
+Department_Mgr (emp_no) -> Employees (emp_no)
+Department_Mgr (dept_no) -> Departments (dept_no)
+
