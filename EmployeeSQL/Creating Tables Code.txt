@@ -1,54 +1,64 @@
-1) Creating Tables :
--- Create the Departments table
+##Creating Tables :
+
+
+1) -- Create the Departments table
 CREATE TABLE Departments (
     dept_no CHAR(4) PRIMARY KEY,
-    dept_name VARCHAR(60)
+    dept_name VARCHAR(60) NOT NULL
 );
 
--- Insert data into the Departments table
-INSERT INTO Departments (dept_no, dept_name)
-VALUES
-    ('d001', 'Marketing'),
-    ('d002', 'Finance'),
-    ('d003', 'Human Resources'),
-    ('d004', 'Production'),
-    ('d005', 'Development'),
-    ('d006', 'Quality Management'),
-    ('d007', 'Sales'),
-    ('d008', 'Research'),
-    ('d009', 'Customer Service');
 
-2)-- Create the Department_Emp table
-CREATE TABLE Department_Emp (
-    emp_no INT,
-    dept_no CHAR(4)
+2)-- Create the Salaries table
+CREATE TABLE Salaries (
+    emp_no INT PRIMARY KEY,
+    salary INT NOT NULL
 );
-THEN IMPORTED THE CSV FILE.
 
-3) CREATE TABLE Department_Mgr (
-    dept_no CHAR(4),
-    emp_no INT
+
+
+3) -- Create the Titles table
+CREATE TABLE Titles (
+    title_id VARCHAR(10) PRIMARY KEY,
+    title VARCHAR(60) NOT NULL
 );
 
 
 4) -- Creating Employees Table
 CREATE TABLE Employees (
-    emp_no INT PRIMARY KEY,
-    emp_title_id VARCHAR(10),
-    birth_date DATE,
-    first_name VARCHAR(35),
-    last_name VARCHAR(35),
-    sex CHAR(1),
-    hire_date DATE
-);
-then imported the csv
+    emp_no INT   NOT NULL,
+    emp_title_id VARCHAR NOT NULL,
+    birth_date DATE   NOT NULL,
+    first_name VARCHAR   NOT NULL,
+    last_name VARCHAR   NOT NULL,
+    sex VARCHAR   NOT NULL,
+    hire_date DATE   NOT NULL,
+    FOREIGN KEY (emp_title_id) REFERENCES titles (title_id),
+    PRIMARY KEY (emp_no)
 
-5) CREATE TABLE Salaries (
-    emp_no INT PRIMARY KEY,
-    salary INT
+
+5)-- Create the Department_Mgr table
+CREATE TABLE Department_Mgr (
+    dept_no CHAR(4) NOT NULL,
+    emp_no INT NOT NULL,
+    FOREIGN KEY (dept_no) REFERENCES Departments(dept_no),
+    FOREIGN KEY (emp_no) REFERENCES Employees(emp_no)
 );
 
-6) CREATE TABLE Titles (
-    title_id VARCHAR(10),
-    title INT
+
+6)-- Create the Department_Emp table
+CREATE TABLE Department_Emp (
+    emp_no INT NOT NULL,
+    dept_no CHAR(4) NOT NULL,
+    FOREIGN KEY (emp_no) REFERENCES Employees(emp_no),
+    FOREIGN KEY (dept_no) REFERENCES Departments(dept_no)
 );
+
+
+
+
+
+
+
+
+
+

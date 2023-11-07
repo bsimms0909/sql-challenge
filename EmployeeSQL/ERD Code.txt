@@ -7,16 +7,18 @@ Salaries
 Titles
 
 Departments:
-dept_no (PK)INT
+dept_no (PK)INT FK >- Department_Emp.dept_no
 dept_name VARCHAR
 
 Department_Emp
-emp_no (FK)INT 
-dept_no (FK)INT 
+emp_no (FK)INT FK >- Department_Mgr.emp_no
+dept_no (FK)INT FK >- Department_Mgr.dept_no
+
 
 Department_Mgr
-emp_no (FK)INT
+emp_no (FK)INT FK >- Salaries.emp_no
 dept_no (PK)INT
+
 
 Employees
 emp_no (PK)INT 
@@ -28,11 +30,11 @@ sex VARCHAR
 hire_date DATE
 
 Salaries
-emp_no (FK)INT 
+emp_no (FK)INT FK >- Employees.emp_no
 salary INT
 
 Titles:
-title_id (K)
+title_id (PK) FK >- Employees.title_id
 title
 
 # The relationships between the departments
